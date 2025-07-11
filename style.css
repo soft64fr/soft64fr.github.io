@@ -12,8 +12,11 @@
   font-style: normal;
 }
 
+html{
+    background:#000;
+}
+
 body {
-  background: #111;
   background:
     linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.9)),
     url('webb-NGC\ 602.jpg');
