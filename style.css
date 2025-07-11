@@ -1,0 +1,99 @@
+@font-face {
+  font-family: "Luciole";
+  src: url("fonts/Luciole-Regular.woff2") format("woff2");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Luciole";
+  src: url("fonts/Luciole-Bold.woff2") format("woff2");
+  font-weight: bold;
+  font-style: normal;
+}
+
+body {
+  background: #111;
+  background:
+    linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.9)),
+    url('webb-NGC\ 602.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  min-height: 100vh;
+  color: #fff;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-family: "Luciole", sans-serif;
+  margin: 0;
+  padding: 2rem 1rem;
+  box-sizing: border-box;
+}
+
+main {
+  margin: 0;
+}
+
+h1 {
+  font-size: 3rem;
+  margin: 2rem 0 1rem 0;
+  text-shadow: 0.125rem 0.125rem 0.25rem rgba(0, 0, 0, 0.7);
+}
+
+p {
+  text-shadow: 0.0625rem 0.0625rem 0.125rem rgba(0, 0, 0, 0.7);
+}
+
+#countdown {
+  font-size: 2rem;
+  margin-top: 1rem;
+}
+
+.time-box {
+  display: inline-block;
+  margin: 0 0.625rem;
+}
+
+.time-box span {
+  display: block;
+}
+
+.label {
+  font-size: 0.8rem;
+  color: #ccc;
+}
+
+.social-icons {
+  margin: 2rem 0;
+}
+
+.social-icons a {
+  font-size: 1.6rem;
+  margin: 0 0.5rem;
+  color: #fff;
+  transition: transform 0.2s;
+  text-decoration: none;
+}
+
+.social-icons a:hover {
+  transform: scale(1.1);
+  color: #87CEEB;
+}
+
+.credit {
+  position: fixed;
+  bottom: 0.5rem;
+  right: 0.5rem;
+  font-size: 0.5rem;
+  color: #ccc;
+  background-color: rgba(0, 0, 0, 0.8);
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.25rem;
+  max-width: 100%; /* ou une valeur plus large si besoin */
+  font-weight: 300;
+  white-space: normal; /* permet retour à la ligne si trop long */
+  z-index: 1000;
+}
