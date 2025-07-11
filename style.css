@@ -81,11 +81,6 @@ p {
   text-decoration: none;
 }
 
-.social-icons a:hover {
-  transform: scale(1.1);
-  color: #87CEEB;
-}
-
 .credit {
   position: fixed;
   bottom: 0.5rem;
@@ -95,8 +90,8 @@ p {
   background-color: rgba(0, 0, 0, 0.8);
   padding: 0.25rem 0.5rem;
   border-radius: 0.25rem;
-  max-width: 100%; /* ou une valeur plus large si besoin */
+  max-width: 100%;
   font-weight: 300;
-  white-space: normal; /* permet retour à la ligne si trop long */
+  white-space: normal;
   z-index: 1000;
 }
