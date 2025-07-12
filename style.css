@@ -12,28 +12,39 @@
   font-style: normal;
 }
 
-html{
-    background:#000;
-}
-
 body {
-  background:
-    linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
-    url('webb-NGC\ 602.jpg');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+  position: relative;
   min-height: 100vh;
-  color: #fff;
+  margin: 0;
+  font-family: "Luciole", sans-serif;
+  color: white;
   text-align: center;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  font-family: "Luciole", sans-serif;
-  margin: 0;
   padding: 2rem 1rem;
   box-sizing: border-box;
+  background: #000;
+}
+
+.background-image {
+  position: fixed;
+  inset: 0;
+  background-image: image-set(url("images/webb-NGC602.webp") type("image/webp"),
+      url("images/webb-NGC602.jpg") type("image/jpeg"));
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  z-index: -2;
+}
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: -1;
+  pointer-events: none;
 }
 
 main {
@@ -43,10 +54,26 @@ main {
 h1 {
   font-size: 3rem;
   margin: 2rem 0 1rem 0;
+}
+
+.logo {
+  display: block;
+  filter: drop-shadow(0.0625rem 0.0625rem 0.125rem rgba(0, 0, 0, 0.7));
+  width: auto;
+  height: 5.3rem;
+}
+
+h1,
+#days,
+#hours,
+#minutes,
+#seconds {
   text-shadow: 0.125rem 0.125rem 0.25rem rgba(0, 0, 0, 0.7);
 }
 
-p {
+p,
+.label,
+.social-icons {
   text-shadow: 0.0625rem 0.0625rem 0.125rem rgba(0, 0, 0, 0.7);
 }
 
@@ -85,13 +112,19 @@ p {
   position: fixed;
   bottom: 0.5rem;
   right: 0.5rem;
-  font-size: 0.5rem;
+  font-size: 0.75rem;
   color: #ccc;
-  background-color: rgba(0, 0, 0, 0.8);
+  background: rgba(0, 0, 0, 0.8);
   padding: 0.25rem 0.5rem;
   border-radius: 0.25rem;
   max-width: 100%;
   font-weight: 300;
   white-space: normal;
   z-index: 1000;
+}
+
+small, .small {
+  font-size: 0.75rem !important;
+  line-height: 1.2;
+  font-weight: 300;
 }
