@@ -1,6 +1,6 @@
 "use strict";
 
-const targetDate = new Date("2026-01-31T00:00:00").getTime();
+const targetDate = new Date("2026-03-31T00:00:00").getTime();
 const countdown = () => {
     const now = new Date().getTime();
     const distance = targetDate - now;
