@@ -31,8 +31,8 @@ body {
 .background-image {
   position: fixed;
   inset: 0;
-  background-image: image-set(url("images/webb-NGC602.webp") type("image/webp"),
-      url("images/webb-NGC602.jpg") type("image/jpeg"));
+  background-image: image-set(url("images/webb-NGC6072.webp") type("image/webp"),
+      url("images/webb-NGC6072.jpg") type("image/jpeg"));
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -42,7 +42,7 @@ body {
 .overlay {
   position: fixed;
   inset: 0;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.6);
   z-index: -1;
   pointer-events: none;
 }
