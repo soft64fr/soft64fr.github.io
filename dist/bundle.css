@@ -19,10 +19,14 @@ body {
   font-family: 'Luciole', sans-serif;
   color: white;
   text-align: center;
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  -ms-flex-direction: column;
+      flex-direction: column;
+  -ms-flex-pack: center;
+      justify-content: center;
+  -ms-flex-align: center;
+      align-items: center;
   padding: 2rem 1rem;
   box-sizing: border-box;
   background: #000;
@@ -32,6 +36,10 @@ body {
   position: fixed;
   inset: 0;
   background-image: url('../images/webb-NGC6072.jpg');
+  background-image: -webkit-image-set(
+    url('../images/webb-NGC6072.webp') type('image/webp'),
+    url('../images/webb-NGC6072.jpg') type('image/jpeg')
+  );
   background-image: image-set(
     url('../images/webb-NGC6072.webp') type('image/webp'),
     url('../images/webb-NGC6072.jpg') type('image/jpeg')
@@ -138,3 +146,4 @@ p,
   line-height: 1.2;
   font-weight: 300;
 }
+/*# sourceMappingURL=bundle.css.map */

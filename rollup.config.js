@@ -1,3 +1,5 @@
+import postcss from 'rollup-plugin-postcss';
+import autoprefixer from 'autoprefixer';
 import resolve from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
 import { babel } from '@rollup/plugin-babel';
@@ -15,7 +17,15 @@ export default {
     },
     // 3. Plugins : l'ordre est important !
     plugins: [
-        // Cherche les modules dans node_modules (Résout l'erreur core-js)
+        postcss({
+        extract: 'bundle.css', 
+        plugins: [
+            autoprefixer()
+        ],
+        sourceMap: true, 
+        modules: false 
+    }),
+    // Cherche les modules dans node_modules (Résout l'erreur core-js)
         resolve({ extensions }),
         // Convertit les modules CommonJS (require) en ES Modules
         commonjs(),

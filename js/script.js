@@ -3,6 +3,7 @@
 import { calculateTimeRemaining } from './modules/countdown/TimeCalculator.js';
 import { updateTimeDisplay, showWelcomeMessage } from './modules/countdown/UIUpdater.js';
 import * as Localization from './modules/i18n/localization-core.js';
+import '../style.css'
 
 const TARGET_DATE = new Date('2026-03-31T00:00:00').getTime();
 const INTERVAL_MS = 1000;
