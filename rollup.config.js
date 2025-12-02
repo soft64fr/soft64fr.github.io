@@ -3,12 +3,9 @@ import commonjs from '@rollup/plugin-commonjs';
 import { babel } from '@rollup/plugin-babel';
 
 const extensions = ['.js', '.mjs'];
-const targets = '> 0.25%, not dead, ie >= 10';
-
 export default {
     // 1. Point d'entrée : où Rollup commence à lire votre code
     input: 'js/script.js',
-
     // 2. Sortie : le fichier final (bundle)
     output: {
         file: 'dist/bundle.js',
@@ -16,14 +13,13 @@ export default {
         name: 'app', // Nom de la variable globale si nécessaire
         sourcemap: true,
     },
-
     // 3. Plugins : l'ordre est important !
     plugins: [
         // Cherche les modules dans node_modules (Résout l'erreur core-js)
         resolve({ extensions }),
         // Convertit les modules CommonJS (require) en ES Modules
         commonjs(),
-        // Transpilation Babel (utilise babel.config.json)
+        // Transpilation Babel
         babel({
             extensions,
             babelHelpers: 'bundled',
@@ -32,11 +28,10 @@ export default {
                     '@babel/preset-env',
                     {
                         // Rollup gère les imports, donc Babel doit le savoir
-                        modules: false,
+                        modules: false, 
                         // Polyfills automatiques
                         useBuiltIns: 'usage',
                         corejs: 3,
-                        targets: targets
                     }
                 ]
             ],
