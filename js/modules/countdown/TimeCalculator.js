@@ -16,7 +16,7 @@ export function calculateTimeRemaining(targetTimestamp) {
     const now = new Date().getTime();
     const distance = targetTimestamp - now;
     if (distance < 0) {
-        return { distance: -1, days: 0, hours: 0, minutes: 0, seconds: 0 }; 
+        return { distance: -1, days: 0, hours: 0, minutes: 0, seconds: 0 };
     }
     const days = Math.floor(distance / MS_IN_DAY);
     const hours = Math.floor((distance % MS_IN_DAY) / MS_IN_HOUR);

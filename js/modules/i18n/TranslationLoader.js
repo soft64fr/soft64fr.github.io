@@ -18,14 +18,14 @@ export function getMessages() {
  * @returns {Promise<Object>} Les messages chargés ou un objet vide en cas d'erreur.
  */
 export async function loadMessages(langCode) {
-    const filePath = `./js/modules/i18n/${langCode}.json`;    
+    const filePath = `./js/modules/i18n/${langCode}.json`;
     try {
-        const response = await fetch(filePath); 
+        const response = await fetch(filePath);
         if (!response.ok) {
             throw new Error(`Failed to load language file at ${filePath}. Status: ${response.status}`);
-        }        
+        }
         currentMessages = await response.json();
-        return currentMessages;        
+        return currentMessages;
     } catch (error) {
         console.error(`Error loading translation file for ${langCode}. Using empty messages.`, error);
         currentMessages = {};

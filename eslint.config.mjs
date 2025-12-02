@@ -9,14 +9,20 @@ const require = createRequire(import.meta.url);
 const pluginSecurity = require('eslint-plugin-security');
 
 export default defineConfig([
-      {
-        ignores: [
-            'node_modules/',
-            'package-lock.json',
-            'coverage/',
-        ]
-    },
-    pluginSecurity.configs.recommended,
+  {
+    ignores: [
+      'node_modules/',
+      'package-lock.json',
+      'coverage/',
+      // Dossiers et fichiers générés (CRUCIAL)
+      'dist/',          // Dossier de sortie de Rollup/Babel
+      'build/',         // Autre nom courant pour les builds            
+      // Fichiers de configuration spécifiques (souvent inutiles à linter)
+      'rollup.config.js',
+      'babel.config.json',
+    ]
+  },
+  pluginSecurity.configs.recommended,
   { files: ["**/*.{js,mjs,cjs}"], plugins: { js }, extends: ["js/recommended"], languageOptions: { globals: globals.browser } },
   { files: ["**/*.json"], plugins: { json }, language: "json/json", extends: ["json/recommended"] },
   { files: ["**/*.jsonc"], plugins: { json }, language: "json/jsonc", extends: ["json/recommended"] },

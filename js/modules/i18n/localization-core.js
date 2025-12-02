@@ -12,8 +12,9 @@ import * as TranslationLoader from './TranslationLoader.js';
 export function t(key) {
     const messages = TranslationLoader.getMessages();
     if (typeof key === 'string' && Object.prototype.hasOwnProperty.call(messages, key)) {
-    return messages[key];
-}
+        // eslint-disable-next-line security/detect-object-injection
+        return messages[key];
+    }
     return key;
 }
 
@@ -26,7 +27,7 @@ function translateHtml() {
     elements.forEach(element => {
         const key = element.getAttribute('data-i18n-key');
         if (key) {
-            const translatedText = t(key);            
+            const translatedText = t(key);
             if (element.tagName === 'META' && element.getAttribute('name') === 'description') {
                 element.setAttribute('content', translatedText);
             } else {
@@ -44,8 +45,8 @@ function translateHtml() {
  * @returns {Promise<void>}
  */
 export async function initializeI18n() {
-    const preferredLang = LanguageService.getPreferredLanguage();    
-    await TranslationLoader.loadMessages(preferredLang);    
-    LanguageService.setCurrentLanguage(preferredLang);    
-    translateHtml(); 
+    const preferredLang = LanguageService.getPreferredLanguage();
+    await TranslationLoader.loadMessages(preferredLang);
+    LanguageService.setCurrentLanguage(preferredLang);
+    translateHtml();
 }
