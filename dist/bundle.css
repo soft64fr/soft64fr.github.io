@@ -29,17 +29,11 @@ body {
       align-items: center;
   padding: 2rem 1rem;
   box-sizing: border-box;
-  background: #000;
-}
-
-.background-image {
-  position: fixed;
-  inset: 0;
-  background-image: url('../images/webb-NGC6072.jpg');
+  background: url('../images/webb-NGC6072.jpg') center/cover no-repeat #000; 
   background-image: -webkit-image-set(
     url('../images/webb-NGC6072.webp') type('image/webp'),
     url('../images/webb-NGC6072.jpg') type('image/jpeg')
-  );
+  ); 
   background-image: image-set(
     url('../images/webb-NGC6072.webp') type('image/webp'),
     url('../images/webb-NGC6072.jpg') type('image/jpeg')
@@ -47,7 +41,6 @@ body {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  z-index: -2;
 }
 
 .overlay {
