@@ -1,5 +1,6 @@
 'use strict';
 
+import 'whatwg-fetch';
 import "core-js/stable/promise";
 import "regenerator-runtime/runtime"; 
 import { calculateTimeRemaining } from './modules/countdown/TimeCalculator.js';
