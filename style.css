@@ -1,13 +1,13 @@
 @font-face {
-  font-family: "Luciole";
-  src: url("fonts/Luciole-Regular.woff2") format("woff2");
+  font-family: 'Luciole';
+  src: url('fonts/Luciole-Regular.woff2') format('woff2');
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
-  font-family: "Luciole";
-  src: url("fonts/Luciole-Bold.woff2") format("woff2");
+  font-family: 'Luciole';
+  src: url('fonts/Luciole-Bold.woff2') format('woff2');
   font-weight: bold;
   font-style: normal;
 }
@@ -16,7 +16,7 @@ body {
   position: relative;
   min-height: 100vh;
   margin: 0;
-  font-family: "Luciole", sans-serif;
+  font-family: 'Luciole', sans-serif;
   color: white;
   text-align: center;
   display: flex;
@@ -31,8 +31,11 @@ body {
 .background-image {
   position: fixed;
   inset: 0;
-  background-image: image-set(url("images/webb-NGC6072.webp") type("image/webp"),
-      url("images/webb-NGC6072.jpg") type("image/jpeg"));
+  background-image: url('images/webb-NGC6072.jpg');
+  background-image: image-set(
+    url('images/webb-NGC6072.webp') type('image/webp'),
+    url('images/webb-NGC6072.jpg') type('image/jpeg')
+  );
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -58,6 +61,8 @@ h1 {
 
 .logo {
   display: block;
+  margin-left: auto;
+  margin-right: auto;
   filter: drop-shadow(0.0625rem 0.0625rem 0.125rem rgba(0, 0, 0, 0.7));
   width: auto;
   height: 5.3rem;
@@ -128,8 +133,8 @@ p,
   z-index: 1000;
 }
 
-small, .small {
-  font-size: 0.75rem !important;
+.credit small {
+  font-size: 0.75rem;
   line-height: 1.2;
   font-weight: 300;
 }
