@@ -26,10 +26,10 @@ body {
   align-items: center;
   padding: 2rem 1rem;
   box-sizing: border-box;
-  background: url('../images/webb-NGC6072.jpg') center/cover no-repeat #000; 
+  background: url('../images/webb-NGC6334.jpg') center/cover no-repeat #000; 
   background-image: image-set(
-    url('../images/webb-NGC6072.webp') type('image/webp'),
-    url('../images/webb-NGC6072.jpg') type('image/jpeg')
+    url('../images/webb-NGC6334.webp') type('image/webp'),
+    url('../images/webb-NGC6334.jpg') type('image/jpeg')
   );
   background-size: cover;
   background-position: center;
