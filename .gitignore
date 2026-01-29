@@ -1,0 +1,35 @@
+# -------------------------------------------------------------------
+# Fichier .gitignore
+# Exclut les fichiers générés, les dépendances et les caches locaux.
+# NOTE : /dist est conservé car il est déployé (ex: GitHub Pages).
+# -------------------------------------------------------------------
+
+# 1. Dépendances Node
+/node_modules
+
+# 2. Artefacts de Paquet (si non nécessaires au déploiement)
+/package-lock.json
+/npm-debug.log
+/yarn-error.log
+/yarn-debug.log
+/pnpm-debug.log
+
+# 3. Caches de Build et de Linting
+# Fichiers de cache générés par les outils de développement
+.eslintcache
+.rollup.cache
+.cache/
+
+# 4. Fichiers IDE et OS (pour un environnement de travail propre)
+# macOS
+.DS_Store
+
+# JetBrains / IntelliJ IDEA (selon votre environnement)
+/.idea/
+
+# Visual Studio Code
+/.vscode/
+
+# Build Temporaires (si non dans dist/)
+/tmp
+/temp
