@@ -8,7 +8,7 @@ import { updateTimeDisplay, showWelcomeMessage } from './modules/countdown/UIUpd
 import * as Localization from './modules/i18n/localization-core.js';
 import '../style.css'
 
-const TARGET_DATE = new Date(2026, 2, 31, 0, 0, 0).getTime(); 
+const TARGET_DATE = new Date(2026, 5, 1, 0, 0, 0).getTime();
 const INTERVAL_MS = 1000;
 let timerId = null;
 
