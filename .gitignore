@@ -1,0 +1,26 @@
+# 1. Dépendances
+/node_modules
+
+# 2. Logs et Debug (inutiles et bruyants)
+*-debug.log
+*-error.log
+/pnpm-debug.log
+
+# 3. Sécurité (ne jamais commit les clés API)
+.env
+.env.local
+.env.*.local
+
+# 4. Caches et Build
+.eslintcache
+.rollup.cache
+.cache/
+# /dist est conservé pour le déploiement GitHub Pages
+/tmp
+/temp
+
+# 5. IDE et Système
+.DS_Store
+Thumbs.db
+/.idea/
+/.vscode/
