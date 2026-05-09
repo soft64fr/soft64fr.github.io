@@ -30,14 +30,14 @@ body {
       align-items: center;
   padding: 2rem 1rem;
   box-sizing: border-box;
-  background: url('../images/webb-NGC6334.jpg') center/cover no-repeat #000;
+  background: url('../images/webb-saturn.jpg') center/cover no-repeat #000;
   background-image: -webkit-image-set(
-    url('../images/webb-NGC6334.webp') 1x,
-    url('../images/webb-NGC6334.jpg') 1x
+    url('../images/webb-saturn.webp') 1x,
+    url('../images/webb-saturn.jpg') 1x
   );
   background-image: image-set(
-    url('../images/webb-NGC6334.webp') 1x,
-    url('../images/webb-NGC6334.jpg') 1x
+    url('../images/webb-saturn.webp') 1x,
+    url('../images/webb-saturn.jpg') 1x
   );
   background-size: cover;
   background-position: center;

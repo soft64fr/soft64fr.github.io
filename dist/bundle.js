@@ -6554,7 +6554,7 @@
 	  return _initializeI18n.apply(this, arguments);
 	}
 
-	var TARGET_DATE = new Date(2026, 5, 1, 0, 0, 0).getTime();
+	var TARGET_DATE = new Date(2026, 9, 1, 0, 0, 0).getTime();
 	var INTERVAL_MS = 1000;
 	var timerId = null;
 
