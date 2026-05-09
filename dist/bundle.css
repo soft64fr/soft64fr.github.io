@@ -108,8 +108,10 @@ p,
 }
 
 .social-icons a {
+  display: -ms-inline-flexbox;
+  display: inline-flex;
   font-size: 1.6rem;
-  margin: 0 0.5rem;
+  margin: 0 1rem;
   color: #fff;
   transition: transform 0.2s;
   text-decoration: none;
