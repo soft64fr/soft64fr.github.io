@@ -75,10 +75,10 @@
 		var store = sharedStore.exports = globalThis[SHARED] || defineGlobalProperty(SHARED, {});
 
 		(store.versions || (store.versions = [])).push({
-		  version: '3.49.0',
+		  version: '3.50.0',
 		  mode: IS_PURE ? 'pure' : 'global',
 		  copyright: '© 2013–2025 Denis Pushkarev (zloirock.ru), 2025–2026 CoreJS Company (core-js.io). All rights reserved.',
-		  license: 'https://github.com/zloirock/core-js/blob/v3.49.0/LICENSE',
+		  license: 'https://github.com/zloirock/core-js/blob/v3.50.0/LICENSE',
 		  source: 'https://github.com/zloirock/core-js'
 		});
 		return sharedStore.exports;
@@ -91,9 +91,11 @@
 		if (hasRequiredShared) return shared;
 		hasRequiredShared = 1;
 		var store = requireSharedStore();
+		// eslint-disable-next-line es/no-object-create -- safe
+		var create = Object.create || Object;
 
 		shared = function (key, value) {
-		  return store[key] || (store[key] = value || {});
+		  return store[key] || (store[key] = value || create(null));
 		};
 		return shared;
 	}
@@ -2773,7 +2775,7 @@
 	function requireIterators () {
 		if (hasRequiredIterators) return iterators;
 		hasRequiredIterators = 1;
-		iterators = {};
+		iterators = Object.create ? Object.create(null) : {};
 		return iterators;
 	}
 
@@ -2796,48 +2798,48 @@
 		return isArrayIteratorMethod;
 	}
 
-	var getIteratorMethod;
-	var hasRequiredGetIteratorMethod;
+	var getIteratorMethodInternal;
+	var hasRequiredGetIteratorMethodInternal;
 
-	function requireGetIteratorMethod () {
-		if (hasRequiredGetIteratorMethod) return getIteratorMethod;
-		hasRequiredGetIteratorMethod = 1;
-		var classof = requireClassof();
-		var getMethod = requireGetMethod();
+	function requireGetIteratorMethodInternal () {
+		if (hasRequiredGetIteratorMethodInternal) return getIteratorMethodInternal;
+		hasRequiredGetIteratorMethodInternal = 1;
+		var classof = requireClassofRaw();
 		var isNullOrUndefined = requireIsNullOrUndefined();
-		var Iterators = requireIterators();
+		var getMethod = requireGetMethod();
 		var wellKnownSymbol = requireWellKnownSymbol();
 
 		var ITERATOR = wellKnownSymbol('iterator');
+		var ArrayPrototype = Array.prototype;
 
-		getIteratorMethod = function (it) {
+		getIteratorMethodInternal = function (it) {
 		  if (!isNullOrUndefined(it)) return getMethod(it, ITERATOR)
 		    || getMethod(it, '@@iterator')
-		    || Iterators[classof(it)];
+		    || (classof(it) === 'Arguments' ? ArrayPrototype[ITERATOR] : undefined);
 		};
-		return getIteratorMethod;
+		return getIteratorMethodInternal;
 	}
 
-	var getIterator;
-	var hasRequiredGetIterator;
+	var getIteratorInternal;
+	var hasRequiredGetIteratorInternal;
 
-	function requireGetIterator () {
-		if (hasRequiredGetIterator) return getIterator;
-		hasRequiredGetIterator = 1;
+	function requireGetIteratorInternal () {
+		if (hasRequiredGetIteratorInternal) return getIteratorInternal;
+		hasRequiredGetIteratorInternal = 1;
 		var call = requireFunctionCall();
-		var aCallable = requireACallable();
+		var isCallable = requireIsCallable();
 		var anObject = requireAnObject();
 		var tryToString = requireTryToString();
-		var getIteratorMethod = requireGetIteratorMethod();
+		var getIteratorMethod = requireGetIteratorMethodInternal();
 
 		var $TypeError = TypeError;
 
-		getIterator = function (argument, usingIterator) {
+		getIteratorInternal = function (argument, usingIterator) {
 		  var iteratorMethod = arguments.length < 2 ? getIteratorMethod(argument) : usingIterator;
-		  if (aCallable(iteratorMethod)) return anObject(call(iteratorMethod, argument));
+		  if (isCallable(iteratorMethod)) return anObject(call(iteratorMethod, argument));
 		  throw new $TypeError(tryToString(argument) + ' is not iterable');
 		};
-		return getIterator;
+		return getIteratorInternal;
 	}
 
 	var iteratorClose;
@@ -2885,8 +2887,8 @@
 		var isArrayIteratorMethod = requireIsArrayIteratorMethod();
 		var lengthOfArrayLike = requireLengthOfArrayLike();
 		var isPrototypeOf = requireObjectIsPrototypeOf();
-		var getIterator = requireGetIterator();
-		var getIteratorMethod = requireGetIteratorMethod();
+		var getIterator = requireGetIteratorInternal();
+		var getIteratorMethod = requireGetIteratorMethodInternal();
 		var iteratorClose = requireIteratorClose();
 
 		var $TypeError = TypeError;
@@ -4146,7 +4148,7 @@
 		var replace = uncurryThis(''.replace);
 
 		var TEST = (function (arg) { return String(new $Error(arg).stack); })('zxcasd');
-		// eslint-disable-next-line redos/no-vulnerable, sonarjs/slow-regex -- safe
+		// eslint-disable-next-line redos/no-vulnerable -- safe
 		var V8_OR_CHAKRA_STACK_ENTRY = /\n\s*at [^:]*:[^\n]*/;
 		var IS_V8_OR_CHAKRA_STACK = V8_OR_CHAKRA_STACK_ENTRY.test(TEST);
 
@@ -4724,31 +4726,39 @@
 		var globalThis = requireGlobalThis();
 		var apply = requireFunctionApply();
 		var slice = requireArraySlice();
+		var promiseResolve = requirePromiseResolve();
 		var newPromiseCapabilityModule = requireNewPromiseCapability();
 		var aCallable = requireACallable();
 		var perform = requirePerform();
+		var fails = requireFails();
 
 		var Promise = globalThis.Promise;
 
 		var ACCEPT_ARGUMENTS = false;
-		// Avoiding the use of polyfills of the previous iteration of this proposal
-		// that does not accept arguments of the callback
-		var FORCED = !Promise || !Promise['try'] || perform(function () {
-		  Promise['try'](function (argument) {
+		var FORCED = !Promise || !Promise['try'] || fails(function () {
+		  var p = Promise.resolve();
+		  return Promise['try'](function (argument) {
+		    // avoiding the use of polyfills of the previous iteration of this proposal
+		    // that does not accept arguments of the callback
 		    ACCEPT_ARGUMENTS = argument === 8;
-		  }, 8);
-		}).error || !ACCEPT_ARGUMENTS;
+		    return p;
+		  // it should use `PromiseResolve`
+		  // https://github.com/tc39/ecma262/pull/3883
+		  }, 8) !== p;
+		}) || !ACCEPT_ARGUMENTS;
 
 		// `Promise.try` method
 		// https://tc39.es/ecma262/#sec-promise.try
 		$({ target: 'Promise', stat: true, forced: FORCED }, {
 		  'try': function (callbackfn /* , ...args */) {
 		    var args = arguments.length > 1 ? slice(arguments, 1) : [];
-		    var promiseCapability = newPromiseCapabilityModule.f(this);
 		    var result = perform(function () {
 		      return apply(aCallable(callbackfn), undefined, args);
 		    });
-		    (result.error ? promiseCapability.reject : promiseCapability.resolve)(result.value);
+		    if (!result.error) return promiseResolve(this, result.value);
+		    var promiseCapability = newPromiseCapabilityModule.f(this);
+		    var reject = promiseCapability.reject;
+		    reject(result.value);
 		    return promiseCapability.promise;
 		  }
 		});
@@ -6554,7 +6564,7 @@
 	  return _initializeI18n.apply(this, arguments);
 	}
 
-	var TARGET_DATE = new Date(2026, 9, 1, 0, 0, 0).getTime();
+	var TARGET_DATE = new Date(2027, 1, 1, 0, 0, 0).getTime();
 	var INTERVAL_MS = 1000;
 	var timerId = null;
 
